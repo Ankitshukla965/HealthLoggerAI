@@ -1,0 +1,37 @@
+<!-- app/templates/dashboard.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Health Logger Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <h1>🧾 Nutrient Tracker</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Food</th>
+        <th>Calories</th>
+        <th>Protein</th>
+        <th>Carbs</th>
+        <th>Fats</th>
+        <th>Cholestrol</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for meal in meals %}
+      <tr>
+        <td>{{ meal['Date'] }}</td>
+        <td>{{ meal['Food'] }}</td>
+        <td>{{ meal['Calories'] }}</td>
+        <td>{{ meal['Protein'] }}</td>
+        <td>{{ meal['Carbs'] }}</td>
+        <td>{{ meal['Fats'] }}</td>
+        <td>{{ meal['Cholestrol'] }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</body>
+</html>

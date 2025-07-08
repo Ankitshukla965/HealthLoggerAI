@@ -1,5 +1,6 @@
 import meals
 from openpyxl import load_workbook
+from flask import Flask, render_template
 
 
 
@@ -28,8 +29,18 @@ print(tracked_meals)
 # unique_foods = set(meal['Protein'] for meal in tracked_meals if meal['Protein'] is not None)
 # print(unique_foods)
 
-sorted_meals = sorted(tracked_meals, key=lambda meal: int(meal['Protein']), reverse=True)
+# sorted_meals = sorted(tracked_meals, key=lambda meal: int(meal['Protein']), reverse=True)
 
 
-protein_values = [meal['Protein'] for meal in tracked_meals if meal['Protein'] is not None]
-print(protein_values)
+# protein_values = [meal['Protein'] for meal in tracked_meals if meal['Protein'] is not None]
+# print(protein_values)
+
+app = Flask(__name__)
+
+@app.route('/')
+
+def dashboard():
+        return render_template('Dashboard.html', meals = tracked_meals)
+
+if __name__ == '__main__':
+        app.run(debug=True)
