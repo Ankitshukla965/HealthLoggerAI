@@ -1,4 +1,5 @@
 import meals
+import os
 from openpyxl import load_workbook
 from flask import Flask, render_template
 
@@ -25,7 +26,7 @@ def read_from_excel():
 
 tracked_meals = read_from_excel()
 tracked_meals = [meal for meal in tracked_meals if meal['Food']  is not None]
-print(tracked_meals)
+
 # unique_foods = set(meal['Protein'] for meal in tracked_meals if meal['Protein'] is not None)
 # print(unique_foods)
 
@@ -35,12 +36,31 @@ print(tracked_meals)
 # protein_values = [meal['Protein'] for meal in tracked_meals if meal['Protein'] is not None]
 # print(protein_values)
 
-app = Flask(__name__)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+TEMPLATE_DIR = os.path.join(BASE_DIR, "..", "templates")
+
+app = Flask(__name__, template_folder=TEMPLATE_DIR )
+
+print("template folder = ")
+print( app.template_folder )
+print("🧭 Flask is looking for templates in:", app.template_folder)
+
+if os.path.exists(app.template_folder ):
+    print("📂 Found templates folder. Files inside:")
+    for file in os.listdir(app.template_folder):
+        print(" -", file)
+else:
+    print("❌ templates folder NOT FOUND at this location.")
+
 
 @app.route('/')
 
 def dashboard():
-        return render_template('Dashboard.html', meals = tracked_meals)
+        # print("Meals to be tracked ")
+        print(tracked_meals)
+
+        return render_template('index.html', meals = tracked_meals)
+
 
 if __name__ == '__main__':
-        app.run(debug=True)
+         app.run(debug=True)
