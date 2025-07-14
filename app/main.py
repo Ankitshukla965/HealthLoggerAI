@@ -7,14 +7,16 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+
+
 openai.api_key = os.getenv("OPENAI_API_KEY")
+print(f"OPENAI_API_KEY from .env = {os.getenv('OPENAI_API_KEY')}")
 
 
-api_key = "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"
 
 food_input = input("What you want to track today: ")
 
-meal = Meals(api_key, food_input, "","","","", "")
+meal = Meals(openai.api_key, food_input, "","","","", "")
 
 meal.fetchMacros()
 
