@@ -3,6 +3,7 @@ import re
 from openpyxl import load_workbook
 import datetime
 
+
 class Meals:
     def __init__(self, api_key, food_name, calories, protein, carbohydrates, fats, cholesterol):
         self.food_name = food_name
@@ -86,3 +87,18 @@ def log_to_excel(meal):
     wb.save("CalorieTracker.xlsx")
     print("logged to excel")
 
+def db_update(meal):
+    date_today = datetime.datetime.today().strftime("%d/%m/%Y")
+    meal_doc={
+        "date": date_today,
+        "food": meal.food_name,
+        "calorie": meal.calories,
+        "protein": meal.protein,
+        "carbs": meal.carbohydrates,
+        "fat": meal.fats,
+        "cholestrol": meal.cholesterol
+    }
+    
+    
+    return meal_doc
+    

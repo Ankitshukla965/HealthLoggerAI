@@ -30,7 +30,7 @@ th, td {
 tr:nth-child(even) {
   background-color: #f1f1f1;
 }
-  </style>
+  </style>  
 </head>
 <body>
   <h1>🧾 Nutrients Tracker</h1>
@@ -50,16 +50,23 @@ tr:nth-child(even) {
     <tbody>
       {% for meal in meals %}
       <tr>
-        <td>{{ meal['Date'] }}</td>
-        <td>{{ meal['Food'] }}</td>
-        <td>{{ meal['Calories'] }}</td>
-        <td>{{ meal['Protein'] }}</td>
-        <td>{{ meal['Carbs'] }}</td>
-        <td>{{ meal['Fats'] }}</td>
-        <td>{{ meal['Cholestrol'] }}</td>
+        <td>{{ meal['date'] }}</td>
+        <td>{{ meal['food']}}</td>
+        <td>{{ meal['calorie']}}</td>
+        <td>{{ meal['protein']}}</td>
+        <td>{{ meal['carbs']}}</td>
+        <td>{{ meal['fat']}}</td>
+        <td>{{ meal['cholestrol']}}</td>
       </tr>
       {% endfor %}
     </tbody>
   </table>
 </body>
+<div style="text-align: center; margin: 2rem;">
+  <a href="{{ url_for('home') }}">
+    <button style="padding: 0.75rem 1.5rem; font-size: 1rem; background-color: #3182ce; color: white; border: none; border-radius: 5px; cursor: pointer;">
+      ➕ Track More Meals
+    </button>
+  </a>
+</div>
 </html>

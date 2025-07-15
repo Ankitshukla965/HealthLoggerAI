@@ -55,8 +55,13 @@ else:
 
 @app.route('/')
 
+def home():
+      return render_template("input.html")
+
+
 def dashboard():
         # print("Meals to be tracked ")
+        
         print(tracked_meals)
 
         return render_template('index.html', meals = tracked_meals)
