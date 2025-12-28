@@ -3,7 +3,8 @@ from meals import *
 import openai
 from dotenv import load_dotenv
 from pymongo import MongoClient
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, jsonify
+from auth.routes import auth_bp 
 
 # from openpyxl import load_workbook
 
@@ -52,6 +53,13 @@ def dashboard():
     
     return render_template("index.html", meals = all_meals)
 
+@app.route('/api/meals')
+def get_meals():
+    all_meals = list(meals_collection.find({}, {"_id": 0}))  # Exclude MongoDB _id
+    return jsonify(all_meals)
+
+
+app.register_blueprint(auth_bp, url_prefix='/auth')
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True)  

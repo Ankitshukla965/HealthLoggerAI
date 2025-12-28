@@ -2,7 +2,7 @@ from openai import OpenAI
 import re
 from openpyxl import load_workbook
 import datetime
-
+    
 
 class Meals:
     def __init__(self, api_key, food_name, calories, protein, carbohydrates, fats, cholesterol):

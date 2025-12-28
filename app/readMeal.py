@@ -53,12 +53,9 @@ else:
     print("❌ templates folder NOT FOUND at this location.")
 
 
-@app.route('/')
-
-def home():
-      return render_template("input.html")
 
 
+@app.route("/dashboard")
 def dashboard():
         # print("Meals to be tracked ")
         
